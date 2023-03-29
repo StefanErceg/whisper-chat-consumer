@@ -1,0 +1,19 @@
+{
+	"name": "whisper-chat-consumer",
+	"version": "1.0.0",
+	"main": "index.ts",
+	"repository": "git@github.com:StefanErceg/whisper-chat-consumer.git",
+	"author": "Stefan Erceg <stefanerceg95@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"dev": "nodemon"
+	},
+	"devDependencies": {
+		"@types/node": "^18.15.11",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.0.2"
+	},
+	"dependencies": {
+		"dotenv": "^16.0.3"
+	}
+}
