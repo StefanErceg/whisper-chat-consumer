@@ -1,12 +1,17 @@
+import dotenv from 'dotenv';
 import client, { Connection, Channel, ConsumeMessage } from 'amqplib';
 
-const QUEUE = 'messages';
+dotenv.config();
+
+const LINK = process.env.RABBIT_LINK || '';
+const QUEUE = process.env.RABBIT_QUEUE || 'messages';
 
 export const connect = async () => {
 	try {
-		const connection: Connection = await client.connect('amqp://localhost:5672');
+		const connection: Connection = await client.connect(LINK);
 		const channel: Channel = await connection.createChannel();
 		await channel.assertQueue(QUEUE);
+		console.log('Successfully connected to Rabbit queue!');
 
 		channel.consume(QUEUE, consumer(channel));
 	} catch (error) {

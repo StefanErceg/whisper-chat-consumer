@@ -1,5 +1,4 @@
-const init = () => {
-	console.log('Hello from consumer!');
-};
+import { connect } from './rabbit';
 
-init();
+//connect to rabbitMQ
+connect();
