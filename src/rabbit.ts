@@ -6,12 +6,12 @@ dotenv.config();
 const LINK = process.env.RABBIT_LINK || '';
 const QUEUE = process.env.RABBIT_QUEUE || 'messages';
 
-export const connect = async () => {
+export const connectMQ = async () => {
 	try {
 		const connection: Connection = await client.connect(LINK);
 		const channel: Channel = await connection.createChannel();
 		await channel.assertQueue(QUEUE);
-		console.log('Successfully connected to Rabbit queue!');
+		console.log('Successfully connected to Rabbit message queue!');
 
 		channel.consume(QUEUE, consumer(channel));
 	} catch (error) {
