@@ -14,6 +14,7 @@ const startSocketServer = () => {
 			methods: ['GET', 'POST'],
 		},
 	});
+	console.log(`⚡️[server]: Socket server is running at http://localhost:${PORT}`);
 
 	// set up Socket.io event handlers
 	io.on('connection', (socket) => {
