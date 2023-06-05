@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import client, { Connection, Channel, ConsumeMessage } from 'amqplib';
+import { sendMessage } from './socket';
 
 dotenv.config();
 
@@ -24,7 +25,7 @@ const consumer =
 	(message: ConsumeMessage | null): void => {
 		if (message) {
 			const data = JSON.parse(message.content.toString());
-			console.log(data);
+			sendMessage(data);
 			channel.ack(message);
 		}
 	};
