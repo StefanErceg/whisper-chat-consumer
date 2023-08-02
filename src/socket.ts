@@ -55,7 +55,6 @@ const startSocketServer = () => {
 };
 
 const sendMessage = (data: any) => {
-	console.log(data);
 	try {
 		const receiver = data?.receiver?.id;
 		if (receiver) {
