@@ -1,5 +1,7 @@
+import fs from 'fs';
 import dotenv from 'dotenv';
 import { Server } from 'socket.io';
+import { createServer } from 'https';
 
 dotenv.config();
 
@@ -21,8 +23,14 @@ const ORIGIN: string = process.env.SOCKET_CORS_ORIGIN || '';
 let io: Server | null = null;
 
 const startSocketServer = () => {
+	//create HTTPS server
+	const httpsServer = createServer({
+		key: fs.readFileSync('cert/key.pem'),
+		cert: fs.readFileSync('cert/cert.pem'),
+	});
+
 	// create a Socket.io instance
-	io = new Server(PORT, {
+	io = new Server(httpsServer, {
 		cors: {
 			origin: ORIGIN,
 			methods: ['GET', 'POST'],
@@ -30,7 +38,7 @@ const startSocketServer = () => {
 	});
 	let connectedUsers: User[] = [];
 
-	console.log(`⚡️[server]: Socket server is running at http://localhost:${PORT}`);
+	console.log(`⚡️[server]: Socket server is running at https://localhost:${PORT}`);
 
 	// set up Socket.io event handlers
 	io.on('connection', (socket) => {
@@ -52,6 +60,8 @@ const startSocketServer = () => {
 			io?.emit(MessageEvent.LEFT, userId);
 		});
 	});
+
+	httpsServer.listen(PORT);
 };
 
 const sendMessage = (data: any) => {
