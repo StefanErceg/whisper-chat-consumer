@@ -6,4 +6,4 @@ Message queue consumer server for secure chat application. It listens to new mes
 
 Secure chat architecture schema:
 
-![Screenshot from 2023-10-16 22-26-41](https://github.com/StefanErceg/whisper-chat-consumer/assets/24877686/0d6a8f36-568b-4c50-b84b-53ebbf48d05b)
+<a target="_blank" href="https://imageupload.io/Td7dJOjkbVn5y3C"><img  src="https://imageupload.io/ib/03dKesnMfZfJuJK_1697490579.png" alt="Screenshot from 2023-10-16 22-26-41.png"/></a>
