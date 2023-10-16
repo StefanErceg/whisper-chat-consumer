@@ -18,6 +18,7 @@ enum MessageEvent {
 }
 
 const PORT: number = +(process.env.SOCKET_PORT || 0);
+const HOST: string = process.env.HOST || '';
 const ORIGIN: string = process.env.SOCKET_CORS_ORIGIN || '';
 
 let io: Server | null = null;
@@ -61,7 +62,7 @@ const startSocketServer = () => {
 		});
 	});
 
-	httpsServer.listen(PORT);
+	httpsServer.listen({ host: HOST, port: PORT });
 };
 
 const sendMessage = (data: any) => {
